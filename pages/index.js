@@ -5,9 +5,7 @@ import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeliine';
 
 function HomePage() {
-    const stylesDiv = {
-        // backgroundColor: "red",
-    }
+    
 
     return (
         <>
@@ -15,8 +13,7 @@ function HomePage() {
             <div style={{
                 display: "flex",
                 flexDirection: "column",
-                flex: 1,
-                // backgroundColor: "red",]
+                flex: 1
             }}>
 
                 <Menu />
@@ -31,13 +28,7 @@ function HomePage() {
 
 export default HomePage;
 
-// function Menu() {
-//     return (
-//         <div>
-//             Menu
-//         </div>
-//     );
-// }
+
 
 const StyledHeader = styled.div`
     .user-info img {
@@ -54,6 +45,7 @@ const StyledHeader = styled.div`
         gap: 16px;
         margin-top: 50px;
     }
+  
 
   
     .user-banner{
@@ -72,14 +64,12 @@ const StyledHeader = styled.div`
 
 
 function Header() {
-    function HandleScroll() {
-        console.log(this);
-    }
+    
 
     return (
         <StyledHeader>
             <section className='user-banner'>
-                <img src={config.banner} onScroll={HandleScroll} />
+                <img src={config.banner} onScroll />
             </section>
             {/* <img src="banner" /> */}
             <section className='user-info'>
