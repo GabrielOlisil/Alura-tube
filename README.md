@@ -1,2 +1,2 @@
 # Alura-tube
-Projeto da imersão react realizado pela alura
+Projeto realizado seguindo ensinamentos da imersão react da alura
