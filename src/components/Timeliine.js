@@ -18,6 +18,25 @@ export const StyledTimeline = styled.div`
     max-width: 210px;
     height: auto;
   }
+  
+  .channel-frame{
+    cursor: pointer;
+    padding: 0;
+    
+    section{
+      padding: 0;
+      width: 150px;
+      height: 150px;
+      img {
+        border-radius: 50%;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+
   section {
     width: 100%;
     padding: 0;

@@ -5,7 +5,7 @@ import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeliine';
 
 function HomePage() {
-    
+
 
     return (
         <>
@@ -19,6 +19,7 @@ function HomePage() {
                 <Menu />
                 <Header />
                 <TimeLine playlists={config.playlists} />
+                <Favourites favourites={config.favourites} />
             </div>
         </>
 
@@ -64,7 +65,7 @@ const StyledHeader = styled.div`
 
 
 function Header() {
-    
+
 
     return (
         <StyledHeader>
@@ -115,7 +116,9 @@ function TimeLine(props) {
                                 )
                             })}
 
+
                         </div>
+
                     </section>
                 )
             })}
@@ -124,4 +127,31 @@ function TimeLine(props) {
         </StyledTimeline>
 
     );
+}
+
+function Favourites(props) {
+    return (
+        <section>
+
+            <StyledTimeline>
+                <section>
+                    <h2>Favoritos</h2>
+                    <div>
+                        {props.favourites.map((canal) => {
+                            return (
+                                <a className='channel-frame' href={canal.channel} target="_blank">
+                                    <section>
+
+                                        <img src={canal.picture} />
+                                    </section>
+                                    <span>{canal.name}</span>
+                                </a>
+                            )
+                        })}
+
+                    </div>
+                </section>
+            </StyledTimeline>
+        </section>
+    )
 }
