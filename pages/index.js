@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeliine';
+import React from 'react';
 
 function HomePage() {
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("");
 
 
     return (
@@ -16,9 +18,9 @@ function HomePage() {
                 flex: 1
             }}>
 
-                <Menu />
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
-                <TimeLine playlists={config.playlists} />
+                <TimeLine searchValue={valorDoFiltro} playlists={config.playlists} />
                 <Favourites favourites={config.favourites} />
             </div>
         </>
@@ -44,7 +46,6 @@ const StyledHeader = styled.div`
         width: 100%;
         padding: 16px 32px;
         gap: 16px;
-        margin-top: 50px;
     }
   
 
@@ -62,16 +63,22 @@ const StyledHeader = styled.div`
     
 `;
 
-
+const Styledbanner = styled.div`
+    background-image: url(${({bg}) => bg});
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+`;
 
 function Header() {
 
 
     return (
         <StyledHeader>
-            <section className='user-banner'>
-                <img src={config.banner} onScroll />
-            </section>
+            <Styledbanner bg={config.banner} />
+            {/* <section className='user-banner'>
+                <img src={config.banner}  />
+            </section> */}
             {/* <img src="banner" /> */}
             <section className='user-info'>
 
@@ -92,29 +99,34 @@ function Header() {
     );
 }
 
-function TimeLine(props) {
+function TimeLine({ searchValue, ...props }) {
     const playlistsNames = Object.keys(props.playlists)
     return (
         <StyledTimeline>
 
-            {playlistsNames.map((playlistName) => {
+            {playlistsNames.map((playlistName, index) => {
                 const videos = props.playlists[playlistName]
                 return (
-                    <section>
+                    <section key={index}>
                         <h2>{playlistName}</h2>
 
                         <div>
 
-                            {videos.map((video) => {
-                                return (
-                                    <a href={video.url}>
-                                        <img src={video.thumb} />
-                                        <span>
-                                            {video.title}
-                                        </span>
-                                    </a>
-                                )
-                            })}
+                            {videos
+                                .filter((video) => {
+                                    return video.title.toLowerCase().includes(searchValue.toLowerCase())
+
+                                })
+                                .map((video, index) => {
+                                    return (
+                                        <a key={index} href={video.url} >
+                                            <img src={video.thumb} />
+                                            <span>
+                                                {video.title}
+                                            </span>
+                                        </a>
+                                    )
+                                })}
 
 
                         </div>
@@ -137,9 +149,9 @@ function Favourites(props) {
                 <section>
                     <h2>Favoritos</h2>
                     <div>
-                        {props.favourites.map((canal) => {
+                        {props.favourites.map((canal, index) => {
                             return (
-                                <a className='channel-frame' href={canal.channel} target="_blank">
+                                <a key={index} className='channel-frame' href={canal.channel} target="_blank">
                                     <section>
 
                                         <img src={canal.picture} />
