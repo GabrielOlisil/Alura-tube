@@ -9,8 +9,23 @@ export const CSSReset = createGlobalStyle`
     box-sizing: border-box;
 }
 
+*::-webkit-scrollbar{
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: ${({theme}) => theme.backgroundBase};
+}
+*::-webkit-scrollbar-thumb {
+  background-color: ${({theme}) => theme.backgroundLevel2};;
+  border-radius: 20px;
+}
+
 body {
     font-family: sans-serif;
+    background-color: ${({theme}) => theme.backgroundBase};
+
+    color: ${({theme}) => theme.textColorBase};
 }
 
 /* NextJS */

@@ -1,5 +1,5 @@
 import config from '../config.json';
-import styled from 'styled-components';
+import styled, { ThemeConsumer } from 'styled-components';
 import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeliine';
@@ -48,7 +48,7 @@ const StyledHeader = styled.div`
         gap: 16px;
     }
   
-
+    background-color: ${({ theme }) => theme.backgroundLevel1};
   
     .user-banner{
         height: 350px

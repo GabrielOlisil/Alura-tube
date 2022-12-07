@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledTimeline = styled.div`
+
+  max-width: calc(100vw - 100px);
+  margin: 0 auto;
   flex: 1;
   width: 100%;
   padding: 16px;
