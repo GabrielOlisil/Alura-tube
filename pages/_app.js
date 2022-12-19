@@ -21,16 +21,33 @@ const themesActive = {
     }
 }
 
-export default function MyApp({ Component, pageProps }) {
+function ProviderWrapper(props) {
+    return (
+
+        <ColorModeProvider initialMode={"dark"}>
+            {props.children}
+        </ColorModeProvider>
+    )
+
+}
+
+function MyApp({ Component, pageProps }) {
 
     const contexto = React.useContext(ColorModeContext);
-
+    console.log(contexto);
     return (
-        <ColorModeProvider>
-            <ThemeProvider theme={themesActive[contexto.mode]}>
-                <CSSReset />
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </ColorModeProvider>
+
+        <ThemeProvider theme={themesActive[contexto.mode]}>
+            <CSSReset />
+            <Component {...pageProps} />
+        </ThemeProvider>
+    )
+}
+
+export default function _App(props) {
+    return (
+        <ProviderWrapper>
+            <MyApp {...props} />
+        </ProviderWrapper>
     )
 }
